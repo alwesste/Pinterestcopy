@@ -8,23 +8,32 @@ const ImagesScrolling = () => {
     const [catImages, setCatImages] = useState([]);
 
     useEffect(() => {
-        
-        fetchCatImages()
-
-        const displayCatImages = async () => {
-            const imagesData = await Promise.all(Array.from({ length: 6 }, fetchCatImages));
-            const images = imagesData.map(catData => catData[0]?.url).filter(Boolean);
-            setCatImages(images);
+        const fetchData = async () => {
+            try {
+                const imagesData = await Promise.all(Array.from({ length: 6 }, fetchCatImages));
+                const images = imagesData.map(catData => catData[0]?.url);
+                console.log(imagesData)
+                setCatImages(images);
+            } catch (error) {
+                console.error("Error fetching cat images:", error);
+            }
         };
 
-        displayCatImages();
+        // Initial call
+        fetchData();
+
+        // Schedule recurring API calls every 10 seconds
+        // const intervalId = setInterval(fetchData, 10000);
+
+        // // Clean up the interval when the component unmounts
+        // return () => clearInterval(intervalId);
     }, []);
 
     return (
         <>
-            <div className="catImages">
+            <div className="images">
                 {catImages.map((imageUrl, index) => (
-                    <img key={index} src={imageUrl} alt={`Cat ${index}`} style={{ maxWidth: "100%", height: "auto" }} />
+                    <img key={index} src={imageUrl} alt={`Cat ${index}`} className="images-cat"/>
                 ))}
             </div>
         </>

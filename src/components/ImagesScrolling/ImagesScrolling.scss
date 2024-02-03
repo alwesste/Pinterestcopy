@@ -1,4 +1,13 @@
-.catImages {
-    width: 200px;
-    object-fit: cover;
+.images {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1440px;        
+    margin: auto;
+
+
+    &-cat {
+        width: 15%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
 }

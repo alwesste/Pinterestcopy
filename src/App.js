@@ -1,8 +1,8 @@
-import './App.css';
+import './App.scss';
 
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import HookTitle from './HookTitle/HookTitle';
+import HookTitle from './components/HookTitle/HookTitle';
 import ImagesScrolling from './components/ImagesScrolling/ImagesScrolling';
 
 
